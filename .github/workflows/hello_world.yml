@@ -7,16 +7,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  hello:
+  create_tag:
     runs-on: ubuntu-latest
+
+
     steps:
-      - uses: actions/checkout@v2
-      - name: hello world
-        run: echo "Hello World"
-        shell: bash
-  goodbye:
-    runs-on: ubuntu-latest
-    steps:
-      - name: goodbye world
-        run: echo "Good bye"
-        shell: bash
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get latest tag
+        run: |
+          latest_tag=$(git describe --tags --abbrev=0 || echo "v0.0.0")
+          echo "latest_tag=$latest_tag" >> $GITHUB_ENV
+      
