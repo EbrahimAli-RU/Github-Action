@@ -1,8 +1,8 @@
-name: Add PR to Project on FRONTEND Label
+name: Add PR to Classic Project on FRONTEND Label
 
 on:
   pull_request:
-    types: [labeled]  # label add হলে trigger হবে
+    types: [labeled]
 
 jobs:
   add-to-project:
@@ -10,7 +10,8 @@ jobs:
     steps:
       - name: Add PR to Project if FRONTEND label is added
         if: contains(github.event.pull_request.labels.*.name, 'FRONTEND')
-        uses: actions/add-to-project@v0.4.0
+        uses: peter-evans/add-to-project@v1
         with:
-          project-url: https://github.com/users/EbrahimAli-RU/projects/1
+          project: "1"  # Classic project number
+          column: "To do"  # Column name in your project
           github-token: ${{ secrets.GITHUB_TOKEN }}
