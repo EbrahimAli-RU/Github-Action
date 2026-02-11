@@ -1,0 +1,16 @@
+name: Add PR to Project on FRONTEND Label
+
+on:
+  pull_request:
+    types: [labeled]  # label add হলে trigger হবে
+
+jobs:
+  add-to-project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add PR to Project if FRONTEND label is added
+        if: contains(github.event.pull_request.labels.*.name, 'FRONTEND')
+        uses: actions/add-to-project@v0.4.0
+        with:
+          project-url: https://github.com/users/EbrahimAli-RU/projects/1
+          github-token: ${{ secrets.GITHUB_TOKEN }}
