@@ -15,4 +15,4 @@ jobs:
           project-name: "Ebrahim Daily"           # Your classic project name
           column-name: "To do"                     # Column in project
           issue-number: ${{ github.event.pull_request.number }}
-          token: ${{ secrets.PAT }}               # Personal Access Token with project/repo access
+          token: ${{ secrets.GITHUB_TOKEN }}               # Personal Access Token with project/repo access
