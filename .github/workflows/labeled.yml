@@ -10,8 +10,9 @@ jobs:
     steps:
       - name: Add PR to Project if FRONTEND label is added
         if: contains(github.event.pull_request.labels.*.name, 'FRONTEND')
-        uses: peter-evans/add-to-project@v1
+        uses: peter-evans/create-or-update-project-card@v2
         with:
-          project: "1"  # Classic project number
-          column: "To do"  # Column name in your project
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          project-name: "Ebrahim Daily"           # Your classic project name
+          column-name: "To do"                     # Column in project
+          issue-number: ${{ github.event.pull_request.number }}
+          token: ${{ secrets.PAT }}               # Personal Access Token with project/repo access
